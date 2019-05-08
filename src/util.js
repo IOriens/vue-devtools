@@ -613,10 +613,10 @@ function escapeChar (a) {
   return ESC[a] || a
 }
 
-export function copyToClipboard (state) {
+export function copyToClipboard (text, raw) {
   if (typeof document === 'undefined') return
   const dummyTextArea = document.createElement('textarea')
-  dummyTextArea.textContent = stringify(state)
+  dummyTextArea.textContent = raw ? text : stringify(text)
   document.body.appendChild(dummyTextArea)
   dummyTextArea.select()
   document.execCommand('copy')
